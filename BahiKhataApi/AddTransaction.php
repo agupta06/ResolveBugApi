@@ -12,9 +12,7 @@ $content = json_decode($content);
 
 $sql = "INSERT INTO TRANSACTION_DETAILS (TRANSACTION_ID,TRANSACTION_DATE,TRANSACTION_TIME,TRANSACTION_TIMEZONE,TRANSACTION_TYPE,TRANSACTION_AMOUNT,TRANSACTION_MESSAGE,TRANSACTION_FAVOURITE,TRANSACTION_USER)
 VALUES (\"$content->transactionId\",\"$content->transactionDate\",\"$content->transactionTime\",\"$content->transactionTimeZone\",\"$content->transactionType\",\"$content->transactionAmount\",\"$content->transactionMessage\",\"$content->transactionFavourite\",\"$content->transactionUser\")";
-
 $result = $conn->query($sql);
-
 echo $result;
 
 $response->code    = "";

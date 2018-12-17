@@ -11,9 +11,7 @@ $content = file_get_contents("php://input");
 $content = json_decode($content);
 
 $sql = "UPDATE TRANSACTION_DETAILS SET TRANSACTION_FAVOURITE=\"$content->transactionFavourite\" WHERE TRANSACTION_ID=\"$content->transactionId\" AND TRANSACTION_USER=\"$content->transactionUser\"";
-
 $result = $conn->query($sql);
-
 echo $result;
 
 $response->code    = "";

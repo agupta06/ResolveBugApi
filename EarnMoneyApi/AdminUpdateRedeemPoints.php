@@ -10,18 +10,12 @@ if ($conn->connect_error) {
 $content = file_get_contents("php://input");
 $content = json_decode($content);
 
-$sql    = "SELECT * from USER_DETAILS WHERE EMAIL LIKE '$content->email'";
+$sql    = "UPDATE REDEEM_HISTORY SET PAYMENT_DATE=\"$content->paymentDate\",PAYMENT_STATUS=\"$content->paymentStatus\" WHERE REQUEST_DATE=\"$content->requestDate\" AND PAYPAL_EMAIL=\"$content->paypalEmail\" AND AMOUNT=\"$content->amount\"";
 $result = $conn->query($sql);
+echo $result;
 
-if ($result->num_rows == 1) {
-    $sql    = "INSERT INTO REDEEM_HISTORY (AMOUNT,PAYPAL_EMAIL,REQUEST_DATE, EMAIL)
-    VALUES (\"$content->amount\",\"$content->paypalEmail\",\"$content->requestDate\",\"$content->email\")";
-    $result = $conn->query($sql);
-    if ($result == 1) {
-        $response->status = "success";
-    } else {
-        $response->status = "error";
-    }
+if ($result == 1) {
+    $response->status = "success";
 } else {
     $response->status = "error";
 }
